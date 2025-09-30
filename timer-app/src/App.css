@@ -31,7 +31,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 20px;
-  padding: 50px 0px;
+  padding: 30px 0px;
 }
 .button {
   padding: 20px 35px;
@@ -53,4 +53,28 @@ body {
 .reset {
   background-color: skyblue;
   color: white;
+}
+.lap {
+  background-color: #ccc;
+  color: white;
+}
+
+.lap-div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.lap-item {
+  width: 50%;
+  height: 80px;
+  overflow: auto;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #f5f0f0;
+  padding: 10px;
+}
+.disable{
+    opacity: 0.3;
+    cursor: default;
 }
