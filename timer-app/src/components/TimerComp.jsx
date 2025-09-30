@@ -7,7 +7,7 @@ function TimerComp() {
   const [time, setTime] = useState(0);
   const [lap, setLap] = useState([]);
   const [isRunning, setIsRunning] = useState(false);
-  const [timeValue, setTimeValue] = useState('');
+  const [timeValue, setTimeValue] = useState("");
   const [iscountDown, setIsCountDown] = useState(false);
   const ref = useRef();
 
@@ -59,9 +59,11 @@ function TimerComp() {
   }
 
   function setTimer() {
-    setTime(timeValue);
-    setTimeValue("");
-    setIsCountDown(true);
+    if (timeValue !== "") {
+      setTime(timeValue);
+      setTimeValue("");
+      setIsCountDown(true);
+    }
   }
 
   const second = time % 60;
