@@ -7,7 +7,7 @@
 body {
   width: 100%;
   height: 100vh;
-  padding: 50px 300px;
+  padding: 50px 180px;
   border: 35px solid #ccc;
   font-family: "Archivo Black", sans-serif;
   font-weight: 400;
@@ -54,6 +54,10 @@ body {
   background-color: skyblue;
   color: white;
 }
+.setTime {
+  background-color: brown;
+  color: white;
+}
 .lap {
   background-color: #ccc;
   color: white;
@@ -74,7 +78,24 @@ body {
   background-color: #f5f0f0;
   padding: 10px;
 }
-.disable{
-    opacity: 0.3;
-    cursor: default;
+.disable {
+  opacity: 0.3;
+  cursor: default;
+}
+.inp {
+  border: 1px solid #ccc;
+  padding: 20px 10px;
+  background: transparent;
+  border-radius: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  font-family: "Archivo Black", sans-serif;
+  width: 140px;
+}
+.inp::placeholder {
+  font-size: 15px;
+}
+.inp:focus-visible {
+  outline: none;
+  border: 1px solid #ccc;
 }

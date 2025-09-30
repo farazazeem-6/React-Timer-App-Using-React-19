@@ -7,6 +7,8 @@ function TimerComp() {
   const [time, setTime] = useState(0);
   const [lap, setLap] = useState([]);
   const [isRunning, setIsRunning] = useState(false);
+  const [timeValue, setTimeValue] = useState('');
+  const [iscountDown, setIsCountDown] = useState(false);
   const ref = useRef();
 
   useEffect(() => {
@@ -14,11 +16,26 @@ function TimerComp() {
   }, []);
 
   function startTimer() {
-    setIsRunning(true);
     if (ref.current !== null) return;
-    ref.current = setInterval(() => {
-      setTime((prev) => prev + 1);
-    }, 1000);
+    setIsRunning(true);
+
+    if (iscountDown) {
+      ref.current = setInterval(() => {
+        setTime((prev) => {
+          if (prev <= 1) {
+            clearInterval(ref.current);
+            ref.current = null;
+            setIsRunning(false);
+            return 0;
+          }
+          return prev - 1;
+        });
+      }, 1000);
+    } else {
+      ref.current = setInterval(() => {
+        setTime((prev) => prev + 1);
+      }, 1000);
+    }
   }
 
   function stopTimer() {
@@ -29,14 +46,22 @@ function TimerComp() {
 
   function resetTimer() {
     setIsRunning(false);
+    setIsCountDown(false);
     stopTimer();
     setTime(0);
   }
+
   function lapFun() {
     setLap([
       ...lap,
       [`${formatTime(hour)} : ${formatTime(minute)} : ${formatTime(second)}`],
     ]);
+  }
+
+  function setTimer() {
+    setTime(timeValue);
+    setTimeValue("");
+    setIsCountDown(true);
   }
 
   const second = time % 60;
@@ -64,6 +89,17 @@ function TimerComp() {
           onClick={lapFun}
         >
           Set Lap
+        </button>
+        <input
+          value={timeValue}
+          onChange={(e) => setTimeValue(Number(e.target.value))}
+          type="text"
+          placeholder="Enter seconds"
+          className="inp"
+          maxLength={4}
+        />
+        <button className="button setTime" onClick={setTimer}>
+          Set Countdown
         </button>
       </div>
 
